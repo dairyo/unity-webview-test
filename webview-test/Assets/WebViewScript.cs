@@ -24,4 +24,21 @@ public class WebViewScript : MonoBehaviour {
             "}, false);");
         webViewObject.SetMargins(0, 0, 0, 100); //下に100pxマージンを取る
     }
+
+    void OnGUI() {
+        float top = Screen.height - 100;
+        float width = Screen.width / 3;
+        if (GUI.Button(new Rect(0, top, width, 100), "back"))
+        {
+            webViewObject.EvaluateJS("window.history.back();");
+        }
+        if (GUI.Button(new Rect(width, top, width, 100), "reload"))
+        {
+            webViewObject.EvaluateJS("window.location.reload();");
+        }
+        if (GUI.Button(new Rect(width * 2, top, width, 100), "forward"))
+        {
+            webViewObject.EvaluateJS("window.history.forward();");
+        }
+    }
 }
